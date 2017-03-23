@@ -6,9 +6,10 @@ The technology stack will be used is:
 - Vue.js 2
 - Vue-router
 - Vuex
-- normalize.css
+- Normalize.css
 - LESS
 - PostCSS
+- ECMAScript 2015
 - Element-UI
 - JSDoc
 - ESLint
