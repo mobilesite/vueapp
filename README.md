@@ -10,11 +10,14 @@ The technology stack will be used is:
 - LESS
 - PostCSS
 - ECMAScript 2015
+- Babel
 - Element-UI
 - JSDoc
 - ESLint
 - Zepto
 - mocha
+- chai
+- Istanbul
 
 ## Installation && Usage
 
