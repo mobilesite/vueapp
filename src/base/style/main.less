@@ -1,0 +1,20 @@
+@import "normalize.css";
+@import "const";
+@import "mixin";
+
+p{
+  margin: 0;
+}
+a{
+  text-decoration: none;
+  color: @color;
+
+  &:active{
+    color: @color;
+  }
+}
+
+html, body{
+  font-size: @font-size;
+  color: @color;
+}

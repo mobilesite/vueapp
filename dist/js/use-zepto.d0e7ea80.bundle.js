@@ -1,0 +1,1 @@
+var globalLib=webpackJsonpglobalLib([5],{lB5x:function(module,e,l){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=l("GnDS"),a=l.n(o);console.log(a.a)}},["lB5x"]);

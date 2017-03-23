@@ -1,0 +1,14 @@
+@import "./normalize.css";
+/**
+    * Module not found: Error: Can't resolve 'fonts/element-icons.woff?
+    http://vue-loader.vuejs.org/en/configurations/asset-url.html
+    file-loader allows you to designate where to copy and place the asset file, and how to name it using version hashes for better caching. Moreoever, this also means you can just place images next to your *.vue files and use relative paths based on the folder structure instead of worrying about deployment URLs. With proper config, Webpack will auto-rewrite the file paths into correct URLs in the bundled output.
+    详见：https://github.com/ElementUI/theme-default/issues/5
+    解决办法：将node_modules/element-ui/lib下面的theme-default文件夹拷贝到与page.vue平级的目录下，
+    然后在page.vue的style中以@import './theme-default/index.css'引入目标文件
+    */
+@import './theme-default/index.css';
+
+.page{
+  background-color: #fff;
+}
