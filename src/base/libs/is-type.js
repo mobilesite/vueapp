@@ -1,10 +1,16 @@
 /**
- *
+ * @module libs/isType
  * @author dennis
- * @email  
+ * @email
  * @since  17/1/14
  */
 
+/**
+ * 针对给定的变量判断是否是指定的类型
+ * @param {Object} obj - 待判断的变量
+ * @param {Object|String} type - 待匹配的类型
+ * @return {Boolean}
+ */
 export default function isType(obj, type) {
     const toString = Object.prototype.toString;
     const fourBaseTypes = {

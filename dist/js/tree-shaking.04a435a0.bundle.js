@@ -1,0 +1,1 @@
+var globalLib=webpackJsonpglobalLib([6],{"bd+W":function(module,t,e){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var o=e("dfaN");alert(e.i(o.a)(2,1)),alert(o.b.getFoo())},dfaN:function(module,t,e){"use strict";function o(){return"foo"}function r(){return"bar"}function n(t,e){return t-e}t.a=n,t.b={getFoo:o,getBar:r}}},["bd+W"]);

@@ -15,7 +15,9 @@ var configs = {
     srcPath: 'src',
     distPath: 'dist',
     publicPath: '/',
+    eslintConfigPath: './.eslintrc.js',
     postcssConfigPath: 'config/postcss.config.js',
+    jsdocConfigPath: './jsdoc.conf',
     excludeReg: /(node_modules)|(bower_components)/,
     globalLib: 'globalLib',
     alias: {
@@ -32,7 +34,9 @@ var configs = {
 
 var srcPath = resolvePath(rootPath, configs.srcPath);
 var distPath = resolvePath(rootPath, configs.distPath);
+var eslintConfigPath = resolvePath(rootPath, configs.eslintConfigPath);
 var postcssConfigPath = resolvePath(rootPath, configs.postcssConfigPath);
+var jsdocConfigPath = resolvePath(rootPath, configs.jsdocConfigPath);
 
 var publicPath = configs.publicPath;
 
@@ -64,8 +68,10 @@ module.exports = {
     rootPath,
     srcPath,
     distPath,
+    eslintConfigPath,
     //postcss配置文件路径
     postcssConfigPath,
+    jsdocConfigPath,
     //publicPath
     publicPath,
     //抛出的全局方法被挂载到的全局变量

@@ -12,3 +12,4 @@ debugger;
 alert(isType({}, Object));
 /* eslint-enable no-alert */
 
+isType({ a: 1 }, Object);

@@ -18,6 +18,7 @@ var distPath = options.distPath;
 var publicPath = options.publicPath;
 var excludeReg = options.excludeReg;
 var globalLib = options.globalLib;
+var eslintConfigPath = options.eslintConfigPath;
 var alias = options.alias;
 
 var pageEntries = options.pageEntries;
@@ -65,25 +66,30 @@ module.exports = {
                     {
                         loader: 'babel-loader',
                         options: {
-                            presets: [
-                                /*
-                                 * 1. babel 6中，这里一定要包这层[]，否则会报错：
-                                 * Using removed Babel 5 option: foreign.modules -
-                                 * Use the corresponding module transform plugin in the `plugins` option
-                                 * 2.modules: false tells the es2015 preset to avoid compiling import
-                                 * statements into CommonJS.
-                                 * That lets Webpack do tree shaking on your code.
-                                 * */
-                                ['es2015', {modules: false, loose: true}],
-                                ['react']
-                            ],
+                 //            presets: [
+                 //                /*
+                 //                 * 1. babel 6中，这里一定要包这层[]，否则会报错：
+                 //                 * Using removed Babel 5 option: foreign.modules -
+                 //                 * Use the corresponding module transform plugin in the `plugins` option
+                 //                 * 2.modules: false tells the es2015 preset to avoid compiling import
+                 //                 * statements into CommonJS.
+                 //                 * That lets Webpack do tree shaking on your code.
+                 //                 * */
+                 //                ['es2015', {modules: false, loose: true}],
+				// ['react'],
+                 //                ['stage-2']
+                 //            ],
+                 //            plugins: [
+                 //                ['transform-runtime']
+                 //            ],
+                 //            comments: false,
                             cacheDirectory: true
                         }
                     },
                     {
                         loader: 'eslint-loader',
                         options: {
-                            configFile: joinPath(rootPath, '.eslintrc')
+                            configFile: eslintConfigPath
                         }
                     }
                 ],

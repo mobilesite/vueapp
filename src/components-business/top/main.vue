@@ -12,11 +12,35 @@
             <li><router-link to="/projects">Projects</router-link></li>
             <li><router-link to="/user/123">User</router-link></li>
         </nav>
+        <div @click="decrement">-</div><div v-text="count"></div><div @click="increment">+</div>
     </div>
 </template>
 
 <script type="text/babel">
-    export default{
+    import { mapState } from 'vuex';
 
+    let [a, b, ...other] = [1,2,3,5,7,9];
+    console.log(a);
+    console.log(b);
+    console.log(other);
+
+    export default{
+        computed:{
+            localComputed(){
+                return 10;
+            },
+            ...mapState({
+                count: state => state.count
+            })
+        },
+
+        methods: {
+            increment() {
+                this.$store.commit('increment');
+            },
+            decrement() {
+                this.$store.commit('decrement');
+            }
+        }
     }
 </script>
