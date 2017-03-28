@@ -53,6 +53,12 @@ module.exports = {
                 use: [
                     {
                         loader: 'html-loader'
+                    },
+                    {
+                        loader: 'eslint-loader',
+                        options: {
+                            configFile: eslintConfigPath
+                        }
                     }
                 ]
             },
@@ -101,6 +107,12 @@ module.exports = {
                 use: [
                     {
                         loader: 'vue-loader'
+                    },
+                    {
+                        loader: 'eslint-loader',
+                        options: {
+                            configFile: eslintConfigPath
+                        }
                     }
                 ]
             },

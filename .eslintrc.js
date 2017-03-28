@@ -5,6 +5,9 @@ module.exports = {
         "browser": true,
         "node": true
     },
+    "plugins": [
+        "html"
+    ],
     "rules": {
         "import/no-unresolved": 0,
         "import/no-extraneous-dependencies": 0,

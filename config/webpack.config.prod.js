@@ -166,7 +166,16 @@ Object.keys(pageEntries).map((item) => {
         filename: `${item}.html`,
         template: resolvePath(pagePath, `./${item}/page.html`),
         chunks: ['common', item], //指定包含哪些chunk(含JS和CSS)，不指定的话，它会包含打包后输出的所有chunk
-        hash: true // 为静态资源生成hash值
+        hash: true, // 为静态资源生成hash值
+        minify: {
+            removeComments: true,
+            collapseWhitespace: true,
+            removeAttributeQuotes: true
+            // more options:
+            // https://github.com/kangax/html-minifier#options-quick-reference
+        },
+        // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+        chunksSortMode: 'dependency'
     });
     plugins.push(htmlPlugin);
 });

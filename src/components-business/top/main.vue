@@ -19,13 +19,8 @@
 <script type="text/babel">
     import { mapState } from 'vuex';
 
-    let [a, b, ...other] = [1,2,3,5,7,9];
-    console.log(a);
-    console.log(b);
-    console.log(other);
-
     export default{
-        computed:{
+        computed: {
             localComputed(){
                 return 10;
             },
@@ -33,7 +28,6 @@
                 count: state => state.count
             })
         },
-
         methods: {
             increment() {
                 this.$store.commit('increment');
@@ -42,5 +36,5 @@
                 this.$store.commit('decrement');
             }
         }
-    }
+    };
 </script>

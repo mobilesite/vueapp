@@ -11,5 +11,5 @@
 <script type="text/babel">
     export default{
         props: ['msg']
-    }
+    };
 </script>

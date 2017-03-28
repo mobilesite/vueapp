@@ -39,8 +39,10 @@
 //                name: 'dennis'
 //            }
 //        },
-        methods: { //注意这里是methods而不是method
+        methods: { // 注意这里是methods而不是method
+            /* eslint-disable no-alert */
             onClick: () => alert('Do not touch me!')
+            /* eslint-enable no-alert */
         }
-    }
+    };
 </script>

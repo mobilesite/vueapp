@@ -11,14 +11,14 @@ var currentTarget = process.env.npm_lifecycle_event;
 var config;
 
 if (currentTarget == 'dev') {
-  // 开发调试模式
-  config = require('./webpack.config.dev.js');
+    // 开发调试模式
+    config = require('./webpack.config.dev.js');
 
 } else if (currentTarget == 'build') {
-  // 发布上线模式
-  config = require('./webpack.config.prod.js');
-} else{
-  console.log('error');
+    // 发布上线模式
+    config = require('./webpack.config.prod.js');
+} else {
+    console.log('error');
 }
 
 module.exports = config;

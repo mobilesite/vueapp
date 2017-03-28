@@ -16,7 +16,7 @@
 <script type="text/babel">
     export default{
         watch: {
-            '$route' (to, from) {
+            '$route'(to, from) { // eslint-disable-line
                 // 在这里可以对路由变化作出响应
                 /* eslint-disable no-console */
                 console.log('to:', to);
@@ -25,5 +25,5 @@
                 /* eslint-enable no-console */
             }
         }
-    }
+    };
 </script>
