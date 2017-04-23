@@ -27,7 +27,13 @@ var configs = {
         normal: resolvePath(rootPath, 'src/components-normal'),
         business: resolvePath(rootPath, 'src/components-business'),
         pages: resolvePath(rootPath, 'src/pages'),
+        filters: resolvePath(rootPath, 'src/filters'),
+        directives:  resolvePath(rootPath, 'src/directives'),
+        plugins:  resolvePath(rootPath, 'src/plugins'),
+        utils:  resolvePath(rootPath, 'src/utils'),
+        mixins:  resolvePath(rootPath, 'src/mixins'),
         vue: 'vue/dist/vue.js',
+        ext: resolvePath(rootPath, 'src/base/vue.ext.js'),
         'vue-router': 'vue-router/dist/vue-router.js'
     }
 };
@@ -46,20 +52,27 @@ var excludeReg = configs.excludeReg;
 
 var alias = configs.alias;
 
-var pagePath;
-var globInstance;
-var pageEntries = {};
-
-pagePath = alias.pages;
-globInstance = new glob.Glob('**/page.js', {
-    cwd: pagePath,
-    sync: true  // 这里不能异步，只能同步
-});
-globInstance.found.forEach((item) => {
-    pageEntries[item.replace(/\/page\.js/, '')] = resolvePath(pagePath, item);
-});
-
-module.exports = {
+var filePath = [];
+var globInstance = [];
+var globArr = [
+    {
+        name: 'page',
+        filename: 'page'
+    },
+    {
+        name: 'filter',
+        filename: 'filter'
+    },
+    {
+        name: 'directive',
+        filename: 'directive'
+    },
+    {
+        name: 'util',
+        filename: 'util'
+    }
+];
+var exportObj = {
     //工具方法
     path,
     resolvePath,
@@ -79,7 +92,33 @@ module.exports = {
     //正则
     excludeReg,
     //别名定义
-    alias,
-    //一系列的page入口
-    pageEntries,
+    alias
 };
+
+globArr.forEach((item, index) => {
+    filePath[item.name] = alias[item.name + 's'];
+    globInstance[item.name] = new glob.Glob('**/' + item.filename + '.js', {
+        cwd: filePath[item.name],
+        sync: true  // 这里不能异步，只能同步
+    });
+
+    exportObj[item.name + 'Entries'] = {};
+
+    globInstance[item.name].found.forEach((newItem) => {
+        exportObj[item.name + 'Entries'][newItem.replace(new RegExp('\/' + item.filename + '\.js'), '')] = resolvePath(filePath[item.name], newItem);
+    });
+});
+
+// 改成上面的数组循环执行之前的代码
+// var pagePath = alias.pages;
+// globInstance = new glob.Glob('**/page.js', {
+//     cwd: pagePath,
+//     sync: true  // 这里不能异步，只能同步
+// });
+// var pageEntries = {};
+// globInstance.found.forEach((item) => {
+//     pageEntries[item.replace(/\/page\.js/, '')] = resolvePath(pagePath, item);
+// });
+// exportObj.pageEntries = pageEntries;
+
+module.exports = exportObj;

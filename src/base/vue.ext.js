@@ -4,7 +4,9 @@
  * @email
  * @since  17/1/20
  */
+import Vue from 'vue';
+import vueExtension from 'plugins/vue-extension';
 
-exports.install = function install (Vue) {
+Vue.use(vueExtension);
 
-};
+export default Vue;

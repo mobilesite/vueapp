@@ -62,3 +62,17 @@ MIT
 
 详见：https://github.com/nodejs/node-gyp
 
+3、使用`npm link`实现引用本机中未发布的模块，就像在本机的项目中使用 `npm install <module名称>` 安装了该模块一样。
+
+第一步：
+
+进入到某lib项目（如env）下，执行npm link，就会在全局目录下新建一个env目录，指向/Users/<yourusername>/.nvm/versions/node/v5.12.0/lib/node_modules/这一当前在用版本的node.js的全局模块目录，具体指向的文件名在该lib的package.json文件中指定。
+
+第二步：
+
+再切换到要使用该lib的项目目录（假设为project）下，使用`npm link env`让project/node_modules/env指向全局目录（/Users/<yourusername>/.nvm/versions/node/v5.12.0/lib/node_modules/）下的env。
+
+这样就实现了在project项目中引入本机env的库，只要env目录修改，project引用到的东西也就变了。
+
+
+

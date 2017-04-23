@@ -1,5 +1,9 @@
-import Vue from 'vue';
+import Vue from 'ext';
 import Page from './page.vue';
+
+/* eslint-disable no-console */
+console.log(`${Vue}`);
+/* eslint-enable no-console */
 
 Vue.config.debug = true;// 开启debug模式
 
@@ -11,4 +15,3 @@ new Vue({// eslint-disable-line
         Page
     }
 });
-

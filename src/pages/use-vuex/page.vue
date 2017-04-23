@@ -3,7 +3,7 @@
 </style>
 
 <template>
-    <div>
+    <div class="page">
         <!--<div class="card">hello, <span v-text="name"></span></div>-->
         <!--<card msg="这是一个Vue组件~ "></card>-->
         <!--<el-button>默认按钮</el-button>-->

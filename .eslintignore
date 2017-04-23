@@ -1,2 +1,5 @@
 build/*.js
 config/*.js
+src/filters/main.js
+src/directives/main.js
+src/utils/main.js

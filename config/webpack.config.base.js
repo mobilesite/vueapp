@@ -9,9 +9,11 @@
 var options = require('./webpack.config.options');
 
 var webpack = require('webpack');
+var fs = require('fs');
 
 var path = options.path;
 var joinPath = options.joinPath;
+var resolvePath = options.resolvePath;
 var rootPath = options.rootPath;
 var srcPath = options.srcPath;
 var distPath = options.distPath;
@@ -21,10 +23,76 @@ var globalLib = options.globalLib;
 var eslintConfigPath = options.eslintConfigPath;
 var alias = options.alias;
 
-var pageEntries = options.pageEntries;
+var pageEntries = options.pageEntries;// 多页面时每个页面的入口
+var filterEntries = options.filterEntries;// 所有过滤器的入口文件
+var directiveEntries = options.directiveEntries;// 所有指令的入口文件
+var utilEntries = options.utilEntries;// 所有指令的入口文件
+
+// console.log(pageEntries);
+// console.log(filterEntries);
+// console.log(utilEntries);
+
+(function(){
+    /**
+     * 自动生成src/filters/main.js文件，避免添加了filter时烦人的手工配置与引入
+     * 自动生成src/directives/main.js文件，避免添加了directive时烦人的手工配置与引入
+     * 自动生成src/utils/main.js文件，避免添加了util时烦人的手工配置与引入
+     */
+    var types = [
+        {
+            name: 'filter',
+            entries: filterEntries
+        },
+        {
+            name: 'directive',
+            entries: directiveEntries
+        },
+        {
+            name: 'util',
+            entries: utilEntries
+        }
+    ];
+    types.map(function (type) {
+        var lineEnd = '\n';// 换行符
+        var entryFileContent = [];
+        var temp = {
+            importContent: [],
+            registerContent: [],
+            exportContent: [],
+        };
+
+        Object.keys(type.entries).map(key => {
+            var fileName = type.entries[key].replace(/\//g, "\/\/").replace(/\\/g, "\\\\");// 对路径进行转义
+            if(type.name !== 'util') {
+                temp.importContent.push(`import ${key} from '${fileName}';`);
+                temp.registerContent.push(`Vue.${type.name}('${key}', ${key});`);
+            } else {
+                temp.importContent.push(`import * as ${key} from '${fileName}';`);
+            }
+            temp.exportContent.push(`${key},`);
+        });
+
+        if(type.name !== 'util') {
+            entryFileContent.push("import Vue from 'vue';");
+            entryFileContent.push(temp.importContent.join(lineEnd));
+            entryFileContent.push(temp.registerContent.join(lineEnd));
+        } else {
+            entryFileContent.push(temp.importContent.join(lineEnd));
+        }
+
+        entryFileContent.push('export default {');
+        entryFileContent.push(temp.exportContent.join(lineEnd));
+        entryFileContent.push('};');
+
+        fs.writeFile(joinPath(alias[`${type.name}s`], 'main.js'), entryFileContent.join(lineEnd), function (err) {
+            if (err) throw err;
+            console.log(`src\/${type.name}s\/main.js is saved!`);
+        });
+    });
+}());
 
 module.exports = {
-    // context: srcPath,
+    // ontext: srcPath,
     /**
      * 入口文件
      *

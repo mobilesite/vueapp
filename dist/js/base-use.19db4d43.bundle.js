@@ -1,1 +1,0 @@
-var globalLib=webpackJsonpglobalLib([8],{z9aA:function(module,e,a){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var b=a("IBUR");console.log(a.i(b.a)({},Object)),alert(a.i(b.a)({},Object)),a.i(b.a)({a:1},Object)}},["z9aA"]);
